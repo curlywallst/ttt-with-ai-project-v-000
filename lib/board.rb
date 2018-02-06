@@ -3,7 +3,7 @@ class Board
   attr_accessor :cells
 
   def initialize
-    @cells = Array.new(9, " ")
+    self.reset!
   end
 
   def display
@@ -32,15 +32,11 @@ class Board
   end
 
   def full?
-    @cells.all?{|i| i == "X" || i == "O"} ? true : false
+    @cells.all?{|i| i == "X" || i == "O"}
   end
 
   def turn_count
-    turn_count = 0
-     @cells.each do |e|
-         turn_count +=1 if e!= " "
-     end
-     turn_count
+     @cells.count {|cell| cell == "X" || cell == "O"}
   end
 
   def taken?(move)
